@@ -12,7 +12,7 @@ public class Program {
 //#  hadoop jar
 	public static void main(String[] args) throws IOException {
 		
-		Configuration conf = new Configuration();// core-site접근하여 서버 정보 받아옴
+		Configuration conf = new Configuration();// core-site접근하여 서버 정보 받아옴 구성
 		
 		FileSystem hdfs = FileSystem.get(conf); // 파일시스템 접근
 		
