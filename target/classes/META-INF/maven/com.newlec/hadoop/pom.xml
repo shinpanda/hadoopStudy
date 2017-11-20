@@ -4,8 +4,7 @@
 	<groupId>com.newlec</groupId>
 	<artifactId>hadoop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
-	
+
 	
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -31,6 +30,7 @@
 			<version>2.8.2</version>
 			<type>pom</type>
 		</dependency>
+		<!-- Job Tracker -->
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-yarn</artifactId>
@@ -46,6 +46,12 @@
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapreduce-client-core</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<!-- job을 시킬 땐 또 다른 패키지 필요 -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-jobclient</artifactId>
 			<version>2.8.2</version>
 		</dependency>
 	</dependencies>

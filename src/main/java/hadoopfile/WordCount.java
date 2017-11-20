@@ -35,13 +35,24 @@ public class WordCount {
 	}
 	
 	public static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable>{ // 집계된 결과
+		
+		IntWritable result = new IntWritable();
 		@Override
 		protected void reduce(Text key, Iterable<IntWritable> values,
 				Reducer<Text, IntWritable, Text, IntWritable>.Context context) throws IOException, InterruptedException {
 			// 리듀싱을 하기 위한 함수
+			
+			int count = 0;
+			
+			for(IntWritable val:values) {
+				count += val.get();
+			}
+			
+			result.set(count);
+			context.write(key, result);
 		}
 	}
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		Configuration conf = new Configuration();
 		Job job = Job.getInstance(conf, "Word Count"); //job에 대한 이름 부여
 		
@@ -59,7 +70,9 @@ public class WordCount {
 		
 		// 인풋 폴더와 아웃풋 폴더 지정
 		FileInputFormat.addInputPath(job, new Path(args[0]));
-		FileOutputFormat.setOutputPath(job, new Path(args[0]));
+		FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		
+		System.exit(job.waitForCompletion(true)?0:1); //job 이 끝날 때까지 기다림
 	}
 
 }
